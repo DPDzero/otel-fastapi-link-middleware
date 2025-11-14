@@ -78,7 +78,7 @@ wheels = [
 
 [[package]]
 name = "otel-fastapi-link-middleware"
-version = "0.1.1"
+version = "0.1.4"
 source = { editable = "." }
 dependencies = [
     { name = "opentelemetry-sdk" },
