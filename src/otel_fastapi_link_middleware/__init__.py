@@ -63,6 +63,11 @@ class LinkedTraceMiddleware:
         parent_ctx = trace.get_current_span().get_span_context()
         new_context = otel_context.Context()
         current_span = _get_current_otlp_span()
+
+        if not hasattr(current_span, "name"):
+            await self.app(scope, receive, send)
+            return
+
         span_name = current_span.name  # type: ignore[attr-defined]
         new_name = "LinkedApiSpan"
         current_span.set_attribute("linked_trace", True)
